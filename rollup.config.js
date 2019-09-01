@@ -90,7 +90,8 @@ export default {
 			resolve(),
 			replace({
 				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+				'process.env.NODE_ENV': JSON.stringify(mode),
+				'http://localhost:8080/': 'https://api.artaeum.com/'
 			}),
 			commonjs(),
 			!dev && terser()
