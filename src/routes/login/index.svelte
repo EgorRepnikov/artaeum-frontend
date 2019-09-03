@@ -23,6 +23,10 @@
   }
 </script>
 
+<svelte:head>
+	<title>Log In - Artaeum</title>
+</svelte:head>
+
 <section>
   <div class="container-auth">
     <div class="wrap-auth">

@@ -28,6 +28,10 @@
   }
 </script>
 
+<svelte:head>
+	<title>Registration - Artaeum</title>
+</svelte:head>
+
 <section>
   <div class="container-auth">
     <div class="wrap-auth">
