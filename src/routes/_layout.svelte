@@ -6,6 +6,7 @@
 
 <script>
 	import Navbar from '../components/layout/Navbar.svelte'
+	import Footer from '../components/layout/Footer.svelte'
 
 	export let user
 </script>
@@ -15,3 +16,5 @@
 <main>
 	<slot></slot>
 </main>
+
+<Footer {user} />
