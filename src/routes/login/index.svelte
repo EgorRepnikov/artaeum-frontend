@@ -1,5 +1,5 @@
 <script context="module">
-  export function preload(page, { user }) {
+  export function preload(_, { user }) {
     if (user) {
       this.redirect(200, '/')
     }
