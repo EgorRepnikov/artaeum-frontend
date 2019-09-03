@@ -1,7 +1,7 @@
 const API_URL = 'http://localhost:8080/'
 
 const token = typeof localStorage !== 'undefined' ?
-  localStorage.getItem('access-token') : undefined
+  localStorage.getItem('access_token') : undefined
 
 export function get(url) {
   return wrap(url, { method: 'GET' })

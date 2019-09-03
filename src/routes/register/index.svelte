@@ -18,11 +18,11 @@
   let password = ''
   let langKey = 'en'
 
-  async function submit(event) {
+  async function submit() {
     const response = await post('register', {
       login, email, firstName, lastName, password, langKey
     })
-    if (response.status === 200) {
+    if (response.status === 201) {
       goto('/login')
     }
   }
