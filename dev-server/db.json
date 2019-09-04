@@ -168,7 +168,7 @@
             "id": 4,
             "_id": 4,
             "text": "rand comment new new again",
-            "resourceType": "blog",
+            "resourceType": "article",
             "resourceId": "1",
             "userId": "chief_moderator",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"

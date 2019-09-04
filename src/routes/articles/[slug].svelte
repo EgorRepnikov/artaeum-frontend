@@ -1,5 +1,7 @@
 <script context="module">
-  import { get } from '../../utils'
+  import Comments from '../../components/Comments.svelte'
+
+  import { get, loadComments } from '../../utils'
 
   export async function preload({ params: { slug } }, { user }) {
     const articleResponse = await get(`blog/articles/${slug}`, this.fetch)
@@ -17,7 +19,9 @@
     )
     const category = await categoryResponse.json()
 
-    return { article, author, category, user }
+    const comments = await loadComments('article', article._id, this.fetch)
+
+    return { article, author, category, comments, user }
   }
 </script>
 
@@ -25,6 +29,7 @@
   export let article
   export let author
   export let category
+  export let comments
   export let user
 </script>
 
@@ -139,11 +144,11 @@
             <h1>{article.title}</h1>
             <span class="meta">
               Posted by
-              <a href={'/u/' + author.login}>@{author.login}</a>
+              <a href={'/user/' + author.login}>@{author.login}</a>
               on {article.createdDate}
               <span>
                 in
-                <a href={`/u/${author.login}/blog/${category.name}`}>
+                <a href={`/user/${author.login}/blog/${category.name}`}>
                   {category.name}
                 </a>
               </span>
@@ -170,25 +175,13 @@
           {@html article.body}
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <!-- LIKE -->
-            </li>
-            <li class="list-inline-item">
-              <!-- COMMENT -->
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   </article>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <h4>Comments</h4>
-        <!-- COMMENTS -->
+        <Comments {comments} />
       </div>
     </div>
   </div>
