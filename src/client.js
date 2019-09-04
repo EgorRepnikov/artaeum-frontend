@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.css'
 
+import './styles.css'
+
 import 'jquery/dist/jquery'
 import 'popper.js/dist/popper'
 import 'bootstrap/dist/js/bootstrap'
