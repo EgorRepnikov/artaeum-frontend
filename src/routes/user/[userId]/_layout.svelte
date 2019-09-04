@@ -1,8 +1,8 @@
 <script context="module">
   import { get } from '../../../utils'
 
-  export async function preload({ params: { slug } }, { user }) {
-    const response = await get(`uaa/users/${slug}`, this.fetch)
+  export async function preload({ params: { userId } }, { user }) {
+    const response = await get(`uaa/users/${userId}`, this.fetch)
     if (response.status === 404) {
       return this.error(404, 'Not Found')
     }
