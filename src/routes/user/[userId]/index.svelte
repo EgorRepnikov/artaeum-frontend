@@ -36,9 +36,9 @@
 
 <div class="row">
   <div class="col-md-6 mx-auto">
-    {#each posts as p}
+    {#each posts as post}
       <!-- TODO emit on deletion of Post -->
-      <Post post={p} author={profile} {user} />
+      <Post {post} author={profile} {user} />
     {/each}
   </div>
 </div>

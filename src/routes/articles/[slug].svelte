@@ -144,17 +144,17 @@
             <h1>{article.title}</h1>
             <span class="meta">
               Posted by
-              <a href={'/user/' + author.login}>@{author.login}</a>
+              <a href="/user/{author.login}">@{author.login}</a>
               on {article.createdDate}
               <span>
                 in
-                <a href={`/user/${author.login}/blog/${category.name}`}>
+                <a href="/user/{author.login}/blog/{category.name}">
                   {category.name}
                 </a>
               </span>
               {#if user && user.id === author.id}
                 |
-                <a role="button" href={'/author/article/' + article._id}>
+                <a role="button" href="/author/article/{article._id}">
                   <i class="fa fa-pencil" title="Edit" />
                 </a>
                 |

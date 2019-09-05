@@ -11,7 +11,7 @@
             <img src="/storage/article/mock" onError="this.src = '/ae.jpg'" />
           </div>
           <div class="comment-text">
-            <a href={'/user/' + c.user.login}>{c.user.firstName} {c.user.lastName}</a>
+            <a href="/user/{c.user.login}">{c.user.firstName} {c.user.lastName}</a>
             <div>{@html c.text}</div>
             <span class="date sub-text">{c.createdDate}</span>
           </div>

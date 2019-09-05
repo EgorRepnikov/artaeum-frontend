@@ -37,7 +37,7 @@
               <h3 class="title">{profile.firstName} {profile.lastName}</h3>
               <div class="d-inline-flex">
                 <h6>@{profile.login}</h6>
-                <a class="text-dark" href={`/user/${profile.login}/subscribers`}>
+                <a class="text-dark" href="/user/{profile.login}/subscribers">
                   <i class="fa fa-users" title="Subscribers"></i>
                 </a>
               </div>
@@ -54,14 +54,8 @@
       </div>
       <div class="row">
         <div class="tab-nav">
-          <a
-            href={`/user/${profile.login}`}
-            class:active={!segment}
-          >Wall</a>
-          <a
-            href={`/user/${profile.login}/blog`}
-            class:active={segment === 'blog'}
-          >Blog</a>
+          <a href="/user/{profile.login}" class:active={!segment}>Wall</a>
+          <a href="/user/{profile.login}/blog" class:active={segment === 'blog'}>Blog</a>
         </div>
       </div>
       <slot></slot>
