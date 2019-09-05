@@ -64,9 +64,7 @@
           >Blog</a>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </section>

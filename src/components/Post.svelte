@@ -4,7 +4,7 @@
   export let user
 </script>
 
-<div class="card post-card mx-auto">
+<div class="card post-card">
   <div class="card-header">
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex justify-content-between align-items-center">
