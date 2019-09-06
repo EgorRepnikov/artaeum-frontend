@@ -1,36 +1,29 @@
 <script context="module">
   import Comments from '../../components/Comments.svelte'
 
-  import { get, loadComments } from '../../utils'
+  import { getArticle, getUser, getCategory, getComments } from '../../api'
 
   export async function preload({ params: { id } }, { user }) {
-    const articleResponse = await get(`blog/articles/${id}`, this.fetch)
-    if (articleResponse.status === 404) {
+    const article = await getArticle(id, this.fetch)
+    if (!article) {
       return this.error(404, 'Not Found')
     }
-    const article = await articleResponse.json()
-
-    const authorResponse = await get(`uaa/users/${article.userId}`, this.fetch)
-    const author = await authorResponse.json()
-
-    const categoryResponse = await get(
-      `blog/categories/${article.category}`,
-      this.fetch
-    )
-    const category = await categoryResponse.json()
-
-    const comments = await loadComments('article', article._id, this.fetch)
-
-    return { article, author, category, comments, user }
+    const author = await getUser(article.userId, this.fetch)
+    const category = await getCategory(article.category, this.fetch)
+    const comments = await getComments('article', article._id, this.fetch)
+    for (const comment of comments) {
+      comment.user = await getUser(comment.userId, this.fetch)
+    }
+    return { user, article, author, category, comments }
   }
 </script>
 
 <script>
+  export let user
   export let article
   export let author
   export let category
   export let comments
-  export let user
 </script>
 
 <style>
@@ -146,12 +139,12 @@
               Posted by
               <a href="/user/{author.login}">@{author.login}</a>
               on {article.createdDate}
-              <span>
+              {#if category}
                 in
                 <a href="/user/{author.login}/blog/{category.name}">
                   {category.name}
                 </a>
-              </span>
+              {/if}
               {#if user && user.id === author.id}
                 |
                 <a role="button" href="/author/article/{article._id}">

@@ -18,7 +18,7 @@
       <a id="footer-logo" class="mx-auto" href="/">æ</a>
       <p class="mr-auto">
         Created by
-        <a href="/">Egor Repnikov</a>
+        <a href="/user/egor_repnikov">Egor Repnikov</a>
       </p>
     </div>
   </div>

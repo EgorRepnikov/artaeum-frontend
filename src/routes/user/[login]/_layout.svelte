@@ -1,20 +1,19 @@
 <script context="module">
-  import { get } from '../../../utils'
+  import { getUser } from '../../../api'
 
-  export async function preload({ params: { userId } }, { user }) {
-    const response = await get(`uaa/users/${userId}`, this.fetch)
-    if (response.status === 404) {
+  export async function preload({ params: { login } }, { user }) {
+    const profile = await getUser(login, this.fetch)
+    if (!profile) {
       return this.error(404, 'Not Found')
     }
-    const profile = await response.json()
-    return { profile, user }
+    return { user, profile }
   }
 </script>
 
 <script>
-  export let profile
-  export let user
   export let segment
+  export let user
+  export let profile
 </script>
 
 <section class="profile-page">

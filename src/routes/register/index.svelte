@@ -9,20 +9,20 @@
 <script>
   import { goto } from '@sapper/app'
 
-  import { post } from '../../utils'
+  import { registerUser } from '../../api'
 
   let login = ''
   let email = ''
   let firstName = ''
   let lastName = ''
   let password = ''
-  let langKey = 'en'
+  let langKey = ''
 
   async function submit() {
-    const response = await post('register', {
+    const user = {
       login, email, firstName, lastName, password, langKey
-    })
-    if (response.status === 201) {
+    }
+    if (await registerUser(user)) {
       goto('/login')
     }
   }

@@ -9,7 +9,7 @@
 <script>
   import { goto, stores } from '@sapper/app'
 
-  import { login } from '../../utils'
+  import { login } from '../../api'
 
   const { session } = stores()
 

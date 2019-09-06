@@ -1,33 +1,24 @@
 <script context="module">
-  import { get } from '../../../utils'
+  import { getUser, getSubscriptions } from '../../../api'
 
-  export async function preload({ params: { userId } }) {
-    const profileResponse = await get(`uaa/users/${userId}`, this.fetch)
-    const profile = await profileResponse.json()
-
-    const subscriptionsResponse = await get(
-      `profile/subscriptions?profileId=${userId}`,
-      this.fetch
-    )
-    const subscriptions = await subscriptionsResponse.json()
+  export async function preload({ params: { login } }) {
+    const profile = await getUser(login, this.fetch)
+    const subscriptions = await getSubscriptions(`?profileId=${profile.id}`, this.fetch)
     for (const subscription of subscriptions) {
       subscription.profile = profile
-
-      const userResponse = await get(`uaa/users/${subscription.subscriberId}`, this.fetch)
-      subscription.subscriber = await userResponse.json()
+      subscription.subscriber = await getUser(subscription.subscriberId, this.fetch)
     }
-
-    return { subscriptions, userId }
+    return { login, subscriptions }
   }
 </script>
 
 <script>
+  export let login
   export let subscriptions
-  export let userId
 </script>
 
 <svelte:head>
-  <title>@{userId}'s subscribers - Artaeum</title>
+  <title>@{login}'s subscribers - Artaeum</title>
 </svelte:head>
 
 <div class="row">

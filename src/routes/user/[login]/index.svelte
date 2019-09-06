@@ -1,36 +1,31 @@
 <script context="module">
-  import { get } from '../../../utils'
+  import { getPosts, getUser } from '../../../api'
 
-  export async function preload({ params: { userId } }, { user }) {
-    const postsResponse = await get(`media/posts?userId=${userId}`, this.fetch)
-    const totalPosts = postsResponse.headers.get('x-total-count')
-    const posts = await postsResponse.json()
-
-    const profileResponse = await get(`uaa/users/${userId}`, this.fetch)
-    const profile = await profileResponse.json()
-
-    return { posts, totalPosts, profile, user }
+  export async function preload({ params: { login } }, { user }) {
+    const profile = await getUser(login, this.fetch)
+    const { posts, totalCount } = await getPosts(`?userId=${profile.id}`, this.fetch)
+    return { user, profile, posts, totalCount }
   }
 </script>
 
 <script>
   import Post from '../../../components/Post.svelte'
 
-  import { get as get_ } from '../../../utils'
+  import { getPosts as getPosts_ } from '../../../api'
 
-  export let posts
-  export let totalPosts
-  export let profile
   export let user
+  export let profile
+  export let posts
+  export let totalCount
 
   let page = 0
   let size = 10
 
   async function loadMore() {
-    const postsResponse = await get_(
-      `media/posts?userId=${user.id}&page=${page++}&size=${size}`
+    const res = await getPosts_(
+      `?userId=${profile.id}&page=${page++}&size=${size}`
     )
-    posts = [...posts, await postsResponse.json()]
+    posts = [...posts, res.posts]
   }
 </script>
 
@@ -46,7 +41,7 @@
     {/each}
   </div>
 </div>
-{#if totalPosts > posts.length}
+{#if totalCount > posts.length}
   <div class="row">
     <div class="col-md-6 mx-auto">
       <button class="btn btn-dark" on:click={loadMore}>Load More</button>
@@ -57,7 +52,7 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="alert alert-dark font-weight-bold" role="alert">
-        There isn't posts
+        There are no posts
       </div>
     </div>
   </div>
