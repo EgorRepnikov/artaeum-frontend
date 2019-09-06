@@ -17,13 +17,18 @@
       subscription.subscriber = await userResponse.json()
     }
 
-    return { subscriptions }
+    return { subscriptions, userId }
   }
 </script>
 
 <script>
   export let subscriptions
+  export let userId
 </script>
+
+<svelte:head>
+  <title>@{userId}'s subscribers - Artaeum</title>
+</svelte:head>
 
 <div class="row">
   <div class="col-md-6 mx-auto">

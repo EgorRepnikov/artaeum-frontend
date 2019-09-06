@@ -50,6 +50,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>@{profile.login}'s Blog, {category.name} - Artaeum</title>
+</svelte:head>
+
 <div class="row">
   <div class="col-md-6 mx-auto">
     {#each articles as article}

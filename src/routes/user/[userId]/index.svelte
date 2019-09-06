@@ -34,6 +34,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>@{profile.login} - Artaeum</title>
+</svelte:head>
+
 <div class="row">
   <div class="col-md-6 mx-auto">
     {#each posts as post}
