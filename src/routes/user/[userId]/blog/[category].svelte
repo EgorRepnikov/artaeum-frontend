@@ -1,22 +1,30 @@
 <script context="module">
   import { get } from '../../../../utils'
 
-  export async function preload({ params: { userId } }, user) {
-    const articlesResponse = await get(`blog/articles?userId=${userId}`, this.fetch)
+  export async function preload({ params: { userId, category } }, user) {
+    const categoriesResponse = await get(`blog/categories?userId=${userId}`, this.fetch)
+    const categories = await categoriesResponse.json()
+    category = categories.find((c) => c.name === category)
+
+    if (!category) {
+      return this.error(404, 'Category hasn\'t been found')
+    }
+
+    const articlesResponse = await get(
+      `blog/articles?userId=${userId}&category=${category._id}`,
+      this.fetch
+    )
     const totalArticles = articlesResponse.headers.get('x-total-count')
     const articles = await articlesResponse.json()
 
     for (const article of articles) {
-      const categoryResponse = await get(`blog/categories/${article.category}`, this.fetch)
-      if (categoryResponse.status !== 404) {
-        article.category = await categoryResponse.json()
-      }
+      article.category = category
     }
 
     const profileResponse = await get(`uaa/users/${userId}`, this.fetch)
     const profile = await profileResponse.json()
 
-    return { user, totalArticles, articles, profile }
+    return { user, category, totalArticles, articles, profile }
   }
 </script>
 
@@ -26,6 +34,7 @@
   import { get as get_ } from '../../../../utils'
 
   export let user
+  export let category
   export let totalArticles
   export let articles
   export let profile
@@ -35,7 +44,7 @@
 
   async function loadMore() {
     const articlesResponse = await get_(
-      `blog/articles?userId=${user.id}&page=${page++}&size=${size}`
+      `blog/articles?userId=${user.id}&category=${category._id}&page=${page++}&size=${size}`
     )
     articles = [...articles, await articlesResponse.json()]
   }

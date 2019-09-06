@@ -1,6 +1,5 @@
 <script>
   export let article
-  export let category
   export let author
   export let user
 </script>
@@ -12,9 +11,9 @@
   <p>Posted by
     <a href="/user/{author.login}">@{author.login}</a>
     on {article.createdDate}
-    {#if category}
+    {#if article.category}
       in
-      <a href="/user/{author.login}/blog/{category.name}">{category.name}</a>
+      <a href="/user/{author.login}/blog/{article.category.name}">{article.category.name}</a>
     {/if}
     {#if user && user.id === author.id}
       |
