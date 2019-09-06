@@ -47,90 +47,98 @@
     "posts": [
         {
             "id": 1,
+            "_id": 1,
             "userId": "stalin",
             "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 2,
+            "_id": 2,
             "userId": "stalin",
             "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius. Alias sit temporibus asperiores minima architecto?",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 3,
+            "_id": 3,
             "userId": "chief_moderator",
             "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 4,
+            "_id": 4,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 5,
-            "userId": "stalin",
-            "text": "short text",
-            "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
-        },
-        {
-            "id": 5,
+            "_id": 5,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 6,
+            "_id": 6,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 7,
+            "_id": 7,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 8,
+            "_id": 8,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 9,
+            "_id": 9,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 10,
+            "_id": 10,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 11,
+            "_id": 11,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 12,
+            "_id": 12,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 13,
+            "_id": 13,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
         },
         {
             "id": 14,
+            "_id": 14,
             "userId": "stalin",
             "text": "short text",
             "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"

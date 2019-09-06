@@ -1,6 +1,4 @@
 <script context="module">
-  import Comments from '../../components/Comments.svelte'
-
   import { getArticle, getUser, getCategory, getComments } from '../../api'
 
   export async function preload({ params: { id } }, { user }) {
@@ -19,6 +17,8 @@
 </script>
 
 <script>
+  import Comments from '../../components/Comments.svelte'
+
   export let user
   export let article
   export let author

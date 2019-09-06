@@ -41,7 +41,7 @@
       <!-- Comment -->
     </span>
     <span class="card-link post-button">
-      <a href="/post/{post.id}">
+      <a href="/posts/{post.id}">
         <i class="fa fa-link"></i>
       </a>
     </span>
