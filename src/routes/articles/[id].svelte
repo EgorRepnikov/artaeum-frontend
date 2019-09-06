@@ -3,8 +3,8 @@
 
   import { get, loadComments } from '../../utils'
 
-  export async function preload({ params: { slug } }, { user }) {
-    const articleResponse = await get(`blog/articles/${slug}`, this.fetch)
+  export async function preload({ params: { id } }, { user }) {
+    const articleResponse = await get(`blog/articles/${id}`, this.fetch)
     if (articleResponse.status === 404) {
       return this.error(404, 'Not Found')
     }
