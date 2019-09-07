@@ -6,6 +6,7 @@
 
     const { totalCount, articles } = await getArticles(`?userId=${profile.id}`, this.fetch)
     for (const article of articles) {
+      article.user = profile
       if (article.category) {
         article.category = await getCategory(article.category, this.fetch)
       }
@@ -41,7 +42,7 @@
 <div class="row">
   <div class="col-md-6 mx-auto">
     {#each articles as article}
-      <Article {article} author={profile} {user}></Article>
+      <Article {article} {user}></Article>
     {/each}
   </div>
 </div>

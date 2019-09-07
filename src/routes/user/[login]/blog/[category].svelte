@@ -14,6 +14,7 @@
       `?userId=${profile.id}&category=${category._id}`, this.fetch
     )
     for (const article of articles) {
+      article.user = profile
       article.category = category
     }
 
@@ -50,7 +51,7 @@
 <div class="row">
   <div class="col-md-6 mx-auto">
     {#each articles as article}
-      <Article {article} author={profile} {user}></Article>
+      <Article {article} {user}></Article>
     {/each}
   </div>
 </div>
