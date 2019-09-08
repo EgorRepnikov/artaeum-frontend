@@ -2,8 +2,6 @@
   import { getSubscriptions, getArticles, getUser, getCategory } from '../../api'
 
   export async function preload(_, { user }) {
-    user = await getUser('stalin', this.fetch)
-
     const subscriptions = await getSubscriptions(`?subscriberId=${user.id}`, this.fetch)
     const subscriptionIds = subscriptions.map((s) => s.profileId).join(',')
     const { totalCount, articles } = await getArticles(`?users=${subscriptionIds}`, this.fetch)
