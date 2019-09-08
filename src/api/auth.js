@@ -19,3 +19,8 @@ export function logout(session) {
   session.set({})
   localStorage.removeItem('access_token')
 }
+
+export async function activateAccount(key, fetch_) {
+  const response = await get(`uaa/activate?key=${key}`, fetch_)
+  return response.status === 200
+}

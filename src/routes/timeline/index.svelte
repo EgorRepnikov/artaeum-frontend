@@ -34,6 +34,10 @@
   }
 </script>
 
+<svelte:head>
+	<title>Articles from subscriptions - Artaeum</title>
+</svelte:head>
+
 <div class="col-md-6 mx-auto">
   {#each articles as article}
     <Article {article} {user} />
