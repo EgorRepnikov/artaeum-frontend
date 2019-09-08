@@ -10,7 +10,7 @@
   export let segment
 </script>
 
-<section>
+<section class="mt-4">
   <div class="container">
     <div class="row">
       <div class="tab-nav">
