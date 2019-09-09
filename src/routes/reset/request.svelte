@@ -34,7 +34,7 @@
         <div class="alert alert-danger">Error. Try again.</div>
       {/if}
       {#if success}
-        <div class="alert alert-success" *ngIf="success">
+        <div class="alert alert-success">
           <strong>Check your email</strong>
         </div>
       {/if}

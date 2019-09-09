@@ -9,3 +9,8 @@ export async function getUser(loginOrId, fetch_) {
   const response = await get(`uaa/users/${loginOrId}`, fetch_)
   return response.status === 404 ? false : await response.json()
 }
+
+export async function saveUser(user, fetch_) {
+  const response = await post(`uaa/account`, user, fetch_)
+  return response.status === 200
+}
