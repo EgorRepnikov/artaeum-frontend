@@ -11,12 +11,10 @@
     }
 
     const { totalCount, articles} = await getArticles(
-      `?userId=${profile.id}&category=${category._id}`, this.fetch
+      `?userId=${profile.id}&category=${category._id}`,
+      { user: profile, category},
+      this.fetch
     )
-    for (const article of articles) {
-      article.user = profile
-      article.category = category
-    }
 
     return { user, profile, category, totalCount, articles }
   }
@@ -38,7 +36,8 @@
 
   async function loadMore() {
     const res = await getArticles_(
-      `?userId=${profile.id}&category=${category._id}&page=${page++}&size=${size}`
+      `?userId=${profile.id}&category=${category._id}&page=${page++}&size=${size}`,
+      { user: profile, category }
     )
     articles = [...articles, res.articles]
   }

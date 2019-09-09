@@ -4,13 +4,11 @@
   export async function preload({ params: { login } }, { user }) {
     const profile = await getUser(login, this.fetch)
 
-    const { totalCount, articles } = await getArticles(`?userId=${profile.id}`, this.fetch)
-    for (const article of articles) {
-      article.user = profile
-      if (article.category) {
-        article.category = await getCategory(article.category, this.fetch)
-      }
-    }
+    const { totalCount, articles } = await getArticles(
+      `?userId=${profile.id}`,
+      { user: profile },
+      this.fetch
+    )
 
     return { user, totalCount, articles, profile }
   }
@@ -30,7 +28,10 @@
   let size = 10
 
   async function loadMore() {
-    const res = await getArticles_(`?userId=${profile.id}&page=${page++}&size=${size}`)
+    const res = await getArticles_(
+      `?userId=${profile.id}&page=${page++}&size=${size}`,
+      { user }
+    )
     articles = [...articles, res.articles]
   }
 </script>

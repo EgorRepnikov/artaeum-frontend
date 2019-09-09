@@ -2,13 +2,7 @@
 	import { getArticles, getUser, getCategory } from '../api'
 
 	export async function preload(_, { user }) {
-		const { totalCount, articles } = await getArticles('', this.fetch)
-		for (const article of articles) {
-			article.user = await getUser(article.userId, this.fetch)
-			if (article.category) {
-				article.category = await getCategory(article.category, this.fetch)
-			}
-		}
+		const { totalCount, articles } = await getArticles('', {}, this.fetch)
 		return { user, totalCount, articles }
 	}
 </script>
