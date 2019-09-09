@@ -22,6 +22,10 @@
   }
 </script>
 
+<svelte:head>
+	<title>Password Reset - Artaeum</title>
+</svelte:head>
+
 <section class="mt-4 mb-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
