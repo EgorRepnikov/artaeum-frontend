@@ -8,7 +8,7 @@ export async function initReset(mail) {
   return response.status === 200
 }
 
-export async function finishReset(user) {
-  const response = await post('uaa/account/reset-password/finish', user)
+export async function finishReset(resetData) {
+  const response = await post('uaa/account/reset-password/finish', resetData)
   return response.status === 200
 }

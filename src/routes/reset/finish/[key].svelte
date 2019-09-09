@@ -1,20 +1,23 @@
 <script context="module">
-  export function preload(_, { user }) {
+  export function preload({ params: { key } }, { user }) {
     if (user) {
       return this.error(400, 'You are already authorized')
     }
+    return { resetKey: key }
   }
 </script>
 
 <script>
-  import { initReset } from '../../api'
+  import { finishReset } from '../../../api'
+
+  export let resetKey
 
   let error, success
 
-  let email
+  let password
 
   async function submit() {
-    if (await initReset(email)) {
+    if (await finishReset({ resetKey, password })) {
       success = true
     } else {
       error = true
@@ -30,18 +33,19 @@
         <div class="alert alert-danger">Error. Try again.</div>
       {/if}
       {#if success}
-        <div class="alert alert-success" *ngIf="success">
-          <strong>Check your email</strong>
-        </div>
+        <p class="alert alert-success">
+          <span><strong>Password reset was successful.</strong> Let's </span>
+          <a class="alert-link" href="/login">Log In</a>.
+        </p>
       {/if}
       <form on:submit|preventDefault={submit}>
         <div class="form-group">
           <input
-            type="email"
+            type="password"
             class="form-control"
             style="border: 1px solid #ced4da"
-            placeholder="Email"
-            bind:value={email} />
+            placeholder="New Password"
+            bind:value={password} />
         </div>
         <button type="submit" class="btn btn-dark">Reset</button>
       </form>
