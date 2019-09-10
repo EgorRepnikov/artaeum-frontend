@@ -1,19 +1,40 @@
 <script context="module">
-  import { getUser } from '../../../api'
+  import { getUser, getSubscriptions } from '../../../api'
 
   export async function preload({ params: { login } }, { user }) {
     const profile = await getUser(login, this.fetch)
     if (!profile) {
       return this.error(404, 'Not Found')
     }
-    return { user, profile }
+    let isSubscribed = false
+    if (user) {
+      const subscriptions = await getSubscriptions(
+        `?profileId=${profile.id}&subscriberId=${user.id}`,
+        this.fetch
+      )
+      if (subscriptions.length === 1) {
+        isSubscribed = true
+      }
+    }
+    return { user, profile, isSubscribed }
   }
 </script>
 
 <script>
+  import { subscribe, unsubscribe } from '../../../api'
+
   export let segment
   export let user
   export let profile
+  export let isSubscribed
+
+  async function onSubscribe() {
+    await subscribe(profile.id) && (isSubscribed = true)
+  }
+
+  async function onUnsubscribe() {
+    await unsubscribe(profile.id) && (isSubscribed = false)
+  }
 </script>
 
 <section class="profile-page">
@@ -42,10 +63,12 @@
               </div>
             </div>
             <div class="mb-4">
-              <!-- TODO -->
               {#if user && user.id !== profile.id}
-                <button class="btn btn-dark">Subscribe</button>
-                <!-- <button class="btn btn-dark">Unsubscribe</button> -->
+                {#if isSubscribed}
+                  <button class="btn btn-dark" on:click={onUnsubscribe}>Unsubscribe</button>
+                {:else}
+                  <button class="btn btn-dark" on:click={onSubscribe}>Subscribe</button>
+                {/if}
               {/if}
             </div>
           </div>

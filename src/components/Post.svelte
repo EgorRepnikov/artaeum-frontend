@@ -6,8 +6,6 @@
   export let author
   export let user
 
-  user = { id: 'stalin' }
-
   const dispatch = createEventDispatcher()
 
   async function onDeleteClick() {
