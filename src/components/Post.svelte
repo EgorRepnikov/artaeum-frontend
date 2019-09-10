@@ -1,7 +1,26 @@
 <script>
+  import { createEventDispatcher } from 'svelte'
+  import Swal from 'sweetalert2'
+
   export let post
   export let author
   export let user
+
+  user = { id: 'stalin' }
+
+  const dispatch = createEventDispatcher()
+
+  async function onDeleteClick() {
+    const result = await Swal.fire({
+      title: 'Post Deletion',
+      text: 'Are you sure you want to delete this post?',
+      confirmButtonText: 'Remove',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#d33',
+      type: 'warning'
+    })
+    result.value && dispatch('deletion')
+  }
 </script>
 
 <div class="card post-card">
@@ -27,7 +46,11 @@
           <i class="fa fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="post{post.id}">
-          <a role="button" class="dropdown-item">Remove</a>
+          <a
+            role="button"
+            class="dropdown-item"
+            on:click={onDeleteClick}
+          >Remove</a>
         </div>
       {/if}
     </div>

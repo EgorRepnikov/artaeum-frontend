@@ -9,9 +9,11 @@
 </script>
 
 <script>
+  import { goto } from '@sapper/app'
+
   import Post from '../../../components/Post.svelte'
 
-  import { getPosts as getPosts_ } from '../../../api'
+  import { getPosts as getPosts_, deletePost } from '../../../api'
 
   export let user
   export let profile
@@ -27,6 +29,10 @@
     )
     posts = [...posts, res.posts]
   }
+
+  async function onDelete(id) {
+    await deletePost(id) && (posts = posts.filter((p) => p.id !== id))
+  }
 </script>
 
 <svelte:head>
@@ -36,8 +42,7 @@
 <div class="row">
   <div class="col-md-6 mx-auto">
     {#each posts as post}
-      <!-- TODO emit on deletion of Post -->
-      <Post {post} author={profile} {user} />
+      <Post {post} author={profile} {user} on:deletion={() => onDelete(post.id)} />
     {/each}
   </div>
 </div>

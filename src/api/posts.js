@@ -1,4 +1,4 @@
-import { get } from '../utils'
+import { get, delete_ } from '../utils'
 
 export async function getPost(id, fetch_) {
   const response = await get(`media/posts/${id}`, fetch_)
@@ -11,4 +11,9 @@ export async function getPosts(params = '', fetch_) {
     totalCount: response.headers.get('x-total-count'),
     posts: await response.json()
   }
+}
+
+export async function deletePost(id) {
+  const response = await delete_(`media/posts/${id}`)
+  return response.status === 200
 }

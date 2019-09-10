@@ -16,13 +16,21 @@
 </script>
 
 <script>
+  import { goto } from '@sapper/app'
+
   import Comments from '../../components/Comments.svelte'
   import Post from '../../components/Post.svelte'
+
+  import { deletePost } from '../../api'
 
   export let user
   export let post
   export let author
   export let comments
+
+  async function onDelete() {
+    await deletePost(post.id) && goto('/')
+  }
 </script>
 
 <svelte:head>
@@ -33,7 +41,7 @@
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col-lg-6 col-md-8 col-xs-12">
-        <Post {post} {author} {user} />
+        <Post {post} {author} {user} on:deletion={onDelete} />
         <Comments {comments} />
       </div>
     </div>
