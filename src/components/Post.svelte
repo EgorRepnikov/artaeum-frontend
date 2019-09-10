@@ -16,7 +16,9 @@
             <a class="login-link" href="/user/{author.login}">@{author.login}</a>
           </div>
           <div class="h7 text-muted">
-            {author.firstName} {author.lastName} | {post.createdDate}
+            <a href="/posts/{post.id}" class="text-muted">
+              {author.firstName} {author.lastName} | {post.createdDate}
+            </a>
           </div>
         </div>
       </div>
@@ -32,18 +34,5 @@
   </div>
   <div class="card-body">
     <p class="card-text">{@html post.text}</p>
-  </div>
-  <div class="card-footer">
-    <span class="card-link">
-      <!-- Like -->
-    </span>
-    <span class="card-link">
-      <!-- Comment -->
-    </span>
-    <span class="card-link post-button">
-      <a href="/posts/{post.id}">
-        <i class="fa fa-link"></i>
-      </a>
-    </span>
   </div>
 </div>
