@@ -1,4 +1,4 @@
-import { get } from '../utils'
+import { get, delete_ } from '../utils'
 import { getUser } from './users'
 import { getCategory } from './categories'
 
@@ -18,4 +18,9 @@ export async function getArticles(params = '', { user, category }, fetch_) {
     }
   }
   return { totalCount, articles }
+}
+
+export async function deleteArticle(id) {
+  const response = await delete_(`blog/articles/${id}`)
+  return response.status === 200
 }

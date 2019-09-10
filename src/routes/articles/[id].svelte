@@ -17,13 +17,30 @@
 </script>
 
 <script>
+  import Swal from 'sweetalert2'
+  import { goto } from '@sapper/app'
+
   import Comments from '../../components/Comments.svelte'
+
+  import { deleteArticle } from '../../api'
 
   export let user
   export let article
   export let author
   export let category
   export let comments
+
+  async function onDelete() {
+    const result = await Swal.fire({
+      title: 'Article Deletion',
+      text: 'Are you sure you want to delete this article?',
+      confirmButtonText: 'Remove',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#d33',
+      type: 'warning'
+    })
+    result.value && await deleteArticle(article._id) && goto('/')
+  }
 </script>
 
 <style>
@@ -147,11 +164,11 @@
               {/if}
               {#if user && user.id === author.id}
                 |
-                <a role="button" href="/author/article/{article._id}">
+                <a role="button" href="/author/articles/{article._id}">
                   <i class="fa fa-pencil" title="Edit" />
                 </a>
                 |
-                <a>
+                <a role="button" on:click={onDelete}>
                   <i class="fa fa-remove" title="Remove" />
                 </a>
               {/if}
