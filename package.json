@@ -1,6 +1,6 @@
 {
   "name": "artaeum",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,9 +11,9 @@
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:client-and-server-bundles": "ng build --prod && ng run artaeum:server:production --bundleDependencies all"
+    "build:client-and-server-bundles": "ng build --prod && ng run artaeum:server:production --bundleDependencies all",
+    "dev": "concurrently --kill-others \"json-server --watch dev-server/db.json --port 8080 --routes dev-server/routes.json\" \"npm run start\""
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.13",
     "@angular/common": "~8.2.13",
@@ -37,6 +37,8 @@
     "@angular/compiler-cli": "~8.2.13",
     "@angular/language-service": "~8.2.13",
     "@types/node": "~8.9.4",
+    "concurrently": "^5.0.0",
+    "json-server": "^0.15.1",
     "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
