@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 
-import { HasAuthorityDirective } from './directive'
-import { DateConverterPipe, ImageAppenderPipe } from './pipe'
 import {
   ApiInterceptor,
   ApplyTokenInterceptor,
@@ -27,15 +25,7 @@ import {
       multi: true,
     }
   ],
-  declarations: [
-    HasAuthorityDirective,
-    DateConverterPipe,
-    ImageAppenderPipe
-  ],
-  exports: [
-    HasAuthorityDirective,
-    DateConverterPipe,
-    ImageAppenderPipe
-  ]
+  declarations: [],
+  exports: []
 })
 export class CoreModule {}

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core'
+
 import { environment as env } from '../../../environments/environment'
 
 @Pipe({ name: 'imageAppender' })

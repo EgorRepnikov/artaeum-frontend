@@ -1,6 +1,6 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core'
 
-import { Principal } from '../auth'
+import { Principal } from '../../core'
 
 @Directive({ selector: '[aeHasAuthority]' })
 export class HasAuthorityDirective {

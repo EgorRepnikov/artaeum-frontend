@@ -10,6 +10,8 @@ import {
   ArticleComponent, LoaderComponent,
   ImageEditorComponent
 } from './component'
+import { HasAuthorityDirective } from './directive'
+import { DateConverterPipe, ImageAppenderPipe } from './pipe'
 
 @NgModule({
   imports: [
@@ -26,7 +28,10 @@ import {
     PostComponent,
     ArticleComponent,
     LoaderComponent,
-    ImageEditorComponent
+    ImageEditorComponent,
+    HasAuthorityDirective,
+    DateConverterPipe,
+    ImageAppenderPipe
   ],
   exports: [
     CommonModule,
@@ -40,7 +45,10 @@ import {
     PostComponent,
     ArticleComponent,
     LoaderComponent,
-    ImageEditorComponent
+    ImageEditorComponent,
+    HasAuthorityDirective,
+    DateConverterPipe,
+    ImageAppenderPipe
   ]
 })
 export class SharedModule {}

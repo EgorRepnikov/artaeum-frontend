@@ -1,7 +1,5 @@
 export * from './auth'
-export * from './directive'
 export * from './interface'
 export * from './model'
-export * from './pipe'
 export * from './service'
 export * from './core.module'
