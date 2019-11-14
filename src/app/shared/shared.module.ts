@@ -4,6 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router'
 
+import {
+  CommentComponent, LikeComponent,
+  CommentButtonComponent, PostComponent,
+  ArticleComponent, LoaderComponent,
+  ImageEditorComponent
+} from './component'
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,13 +19,28 @@ import { RouterModule } from '@angular/router'
     HttpClientModule,
     RouterModule
   ],
-  declarations: [],
+  declarations: [
+    CommentComponent,
+    LikeComponent,
+    CommentButtonComponent,
+    PostComponent,
+    ArticleComponent,
+    LoaderComponent,
+    ImageEditorComponent
+  ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    CommentComponent,
+    LikeComponent,
+    CommentButtonComponent,
+    PostComponent,
+    ArticleComponent,
+    LoaderComponent,
+    ImageEditorComponent
   ]
 })
 export class SharedModule {}

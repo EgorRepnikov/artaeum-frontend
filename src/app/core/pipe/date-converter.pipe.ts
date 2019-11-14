@@ -2,9 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { environment as env } from '../../../environments/environment'
 
-@Pipe({
-  name: 'dateConverter'
-})
+@Pipe({ name: 'dateConverter' })
 export class DateConverterPipe implements PipeTransform {
 
   constructor(private translateService: TranslateService) {}

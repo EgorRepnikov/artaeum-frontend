@@ -1,0 +1,7 @@
+export * from './article/article.component'
+export * from './comment/comment.component'
+export * from './comment-button/comment-button.component'
+export * from './image-editor/image-editor.component'
+export * from './like/like.component'
+export * from './loader/loader.component'
+export * from './post/post.component'
