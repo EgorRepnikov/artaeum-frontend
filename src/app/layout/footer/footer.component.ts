@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.languages = env.LANGUAGES
     this.currentLang = this.i18nService.getCurrentLang() || this.i18nService.getDefaultLang()
-    this.i18nService.getOnLangChange().subscribe((event) => {
+    this.i18nService.getOnLangChange().subscribe(event => {
       this.currentLang = event.lang
     })
   }

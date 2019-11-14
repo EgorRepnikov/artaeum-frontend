@@ -10,14 +10,14 @@ export class SmartButtonService {
   elements: SmartButtonElement[] = []
 
   constructor(router: Router) {
-    router.events.subscribe((v) => {
+    router.events.subscribe(v => {
       if (v instanceof NavigationEnd) {
         this.elements = []
       }
     })
   }
 
-  add(element: SmartButtonElement): void {
+  add(element: SmartButtonElement) {
     if (Object.keys(this.elements).length < env.COUNT_OF_SMART_BUTTON_ELEMENTS) {
       this.elements.push(element)
     }

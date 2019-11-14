@@ -16,9 +16,10 @@ export class I18nService {
     this.translateService.setDefaultLang('en')
   }
 
-  init(): void {
+  async init() {
     if (this.principal.isAuthenticated()) {
-      this.principal.identity().then((u) => this.translateService.use(u.langKey))
+      const user = await this.principal.identity()
+      this.translateService.use(user.langKey)
     } else if (typeof window !== 'undefined' && window.localStorage.getItem('lang_key')) {
       this.translateService.use(window.localStorage.getItem('lang_key'))
     } else if (typeof navigator !== 'undefined') {
@@ -29,13 +30,12 @@ export class I18nService {
     }
   }
 
-  changeLanguage(lang: string): void {
+  async changeLanguage(lang: string) {
     window.localStorage.setItem('lang_key', lang)
     if (this.principal.isAuthenticated()) {
-      this.principal.identity().then((u) => {
-        u.langKey = lang
-        this.accountService.save(u).subscribe()
-      })
+      const user = await this.principal.identity()
+      user.langKey = lang
+      this.accountService.save(user).subscribe()
     }
     this.translateService.use(lang)
   }

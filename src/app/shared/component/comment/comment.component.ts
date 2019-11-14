@@ -55,7 +55,7 @@ export class CommentComponent implements OnInit {
 
   private loadAll() {
     this.commentService.query(this.resourceType, this.resourceId)
-      .subscribe((comments) => {
+      .subscribe(comments => {
         this.comments = comments.body
         this.loadUsers()
       })

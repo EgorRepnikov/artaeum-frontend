@@ -17,17 +17,17 @@ export class LoginService {
         username: credentials.username,
         password: credentials.password,
         rememberMe: credentials.rememberMe
-      }).subscribe((data) => {
+      }).subscribe(data => {
         window.localStorage.setItem('access_token', data.access_token)
         this.principal.identity().then(() => resolve(data))
-      }, (err) => {
+      }, err => {
         this.logout()
         reject(err)
       })
     })
   }
 
-  logout(): void {
+  logout() {
     window.localStorage.removeItem('access_token')
     this.principal.authenticate(null)
   }
