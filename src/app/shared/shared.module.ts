@@ -1,9 +1,6 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
-import { RouterModule } from '@angular/router'
 
+import { SharedLibsModule } from './shared-libs.module'
 import {
   CommentComponent, LikeComponent,
   CommentButtonComponent, PostComponent,
@@ -14,13 +11,7 @@ import { HasAuthorityDirective } from './directive'
 import { DateConverterPipe, ImageAppenderPipe } from './pipe'
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule
-  ],
+  imports: [SharedLibsModule],
   declarations: [
     CommentComponent,
     LikeComponent,
@@ -34,11 +25,6 @@ import { DateConverterPipe, ImageAppenderPipe } from './pipe'
     ImageAppenderPipe
   ],
   exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule,
     CommentComponent,
     LikeComponent,
     CommentButtonComponent,
