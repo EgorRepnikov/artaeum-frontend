@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  SERVER_API_URL: 'https://api.artaeum.com',
-  IMAGE_BASE_URL: 'https://api.artaeum.com/storage/images/',
+  SERVER_API_URL: 'http://localhost:8080',
+  IMAGE_BASE_URL: 'http://localhost:8080/storage/images/',
   POSTS_PER_PAGE: 10,
   MONTHS: {
     en: [
