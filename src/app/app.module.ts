@@ -13,6 +13,7 @@ import { AuthorModule } from './author'
 import { HomeModule } from './home'
 import { NotFoundModule } from './not-found'
 import { PostModule } from './post'
+import { ProfileModule } from './profile'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PostModule } from './post'
     AuthorModule,
     HomeModule,
     NotFoundModule,
-    PostModule
+    PostModule,
+    ProfileModule
   ],
   bootstrap: [AppComponent]
 })
