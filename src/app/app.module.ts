@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module'
 import { AccountModule } from './account'
 import { ArticleModule } from './article'
 import { AuthorModule } from './author'
+import { HomeModule } from './home'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthorModule } from './author'
     SharedModule,
     AccountModule,
     ArticleModule,
-    AuthorModule
+    AuthorModule,
+    HomeModule
   ],
   bootstrap: [AppComponent]
 })
