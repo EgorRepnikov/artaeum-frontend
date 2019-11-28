@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module'
 import { SharedModule } from './shared/shared.module'
 import { AccountModule } from './account'
 import { ArticleModule } from './article'
+import { AuthorModule } from './author'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ArticleModule } from './article'
     CoreModule,
     SharedModule,
     AccountModule,
-    ArticleModule
+    ArticleModule,
+    AuthorModule
   ],
   bootstrap: [AppComponent]
 })

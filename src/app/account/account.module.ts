@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
+import { CoreModule } from '../core'
 import { SharedModule } from '../shared'
 import { routes } from './account.route'
 import { ActivationComponent } from './activation/activation.component'
@@ -11,6 +12,7 @@ import { RegisterComponent } from './register/register.component'
 
 @NgModule({
   imports: [
+    CoreModule,
     SharedModule,
     RouterModule.forChild(routes)
   ],
