@@ -11,6 +11,7 @@ import { AccountModule } from './account'
 import { ArticleModule } from './article'
 import { AuthorModule } from './author'
 import { HomeModule } from './home'
+import { NotFoundModule } from './not-found'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomeModule } from './home'
     AccountModule,
     ArticleModule,
     AuthorModule,
-    HomeModule
+    HomeModule,
+    NotFoundModule
   ],
   bootstrap: [AppComponent]
 })
