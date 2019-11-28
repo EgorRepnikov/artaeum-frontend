@@ -12,6 +12,7 @@ import { ArticleModule } from './article'
 import { AuthorModule } from './author'
 import { HomeModule } from './home'
 import { NotFoundModule } from './not-found'
+import { PostModule } from './post'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NotFoundModule } from './not-found'
     ArticleModule,
     AuthorModule,
     HomeModule,
-    NotFoundModule
+    NotFoundModule,
+    PostModule
   ],
   bootstrap: [AppComponent]
 })
