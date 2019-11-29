@@ -5,6 +5,7 @@ import {
   Principal,
   SubscriptionService,
   ArticleService,
+  UserService,
   User,
   Article
 } from '../../core'
@@ -19,6 +20,7 @@ export class LastArticlesComponent implements OnInit {
 
   currentUser: User
   articles: Article[] = []
+  users: User[] = []
 
   private page = 0
   private userIds: string
@@ -26,7 +28,8 @@ export class LastArticlesComponent implements OnInit {
   constructor(
     private principal: Principal,
     private subscriptionService: SubscriptionService,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
@@ -48,5 +51,15 @@ export class LastArticlesComponent implements OnInit {
       })
       .toPromise()
     this.articles = this.articles.concat(body)
+    await this.loadUsers()
+  }
+
+  private async loadUsers() {
+    for (const a of this.articles) {
+      if (!this.users[a.userId]) {
+        const res = await this.userService.get(a.userId).toPromise()
+        this.users[a.userId] = res.body
+      }
+    }
   }
 }

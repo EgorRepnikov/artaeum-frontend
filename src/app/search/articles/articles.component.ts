@@ -65,10 +65,10 @@ export class ArticlesComponent implements OnInit {
   }
 
   private async loadUsers() {
-    for (const s of this.articles) {
-      if (!this.users[s.userId]) {
-        const res = await this.userService.get(s.userId).toPromise()
-        this.users[s.userId] = res.body
+    for (const a of this.articles) {
+      if (!this.users[a.userId]) {
+        const res = await this.userService.get(a.userId).toPromise()
+        this.users[a.userId] = res.body
       }
     }
   }
