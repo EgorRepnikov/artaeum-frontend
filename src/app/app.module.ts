@@ -14,6 +14,7 @@ import { HomeModule } from './home'
 import { NotFoundModule } from './not-found'
 import { PostModule } from './post'
 import { ProfileModule } from './profile'
+import { SearchModule } from './search'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProfileModule } from './profile'
     HomeModule,
     NotFoundModule,
     PostModule,
-    ProfileModule
+    ProfileModule,
+    SearchModule
   ],
   bootstrap: [AppComponent]
 })
