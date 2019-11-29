@@ -13,18 +13,18 @@ export class SearchComponent implements OnInit {
   query: string
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   async ngOnInit() {
-    const params = await this.activatedRoute.queryParams.toPromise()
-    this.query = params['query']
+    const { queryParams } = await this.route.snapshot
+    this.query = queryParams['query']
   }
 
   onSubmit(): void {
     this.router.navigate([], {
-      relativeTo: this.activatedRoute,
+      relativeTo: this.route,
       queryParams: { query: this.query }
     })
   }

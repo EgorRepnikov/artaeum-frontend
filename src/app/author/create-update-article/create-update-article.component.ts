@@ -30,7 +30,7 @@ export class CreateUpdateArticleComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const params = await this.route.params.toPromise()
+    const { params } = this.route.snapshot
     const user = await this.principal.identity()
     if (params['id']) {
       const articleRes = await this.articleService.get(params['id']).toPromise()

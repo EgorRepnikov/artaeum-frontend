@@ -32,17 +32,17 @@ export class ArticlesByCategoryComponent implements OnInit {
     private articleService: ArticleService,
     private categoryService: CategoryService,
     private principal: Principal,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   async ngOnInit() {
-    const { pagingParams: { page } } = await this.activatedRoute.data.toPromise()
+    const { page } = this.route.snapshot.data.pagingParams
     this.page = page
     this.previousPage = page
     //
-    const parentParams = await this.activatedRoute.parent.parent.params.toPromise()
-    const params = await this.activatedRoute.params.toPromise()
+    const parentParams = this.route.parent.parent.snapshot.params
+    const { params } = this.route.snapshot
     const userRes = await this.userService.get(parentParams['login']).toPromise()
     this.user = userRes.body
     const categoryRes = await this.categoryService.getAll(userRes.body.id).toPromise()

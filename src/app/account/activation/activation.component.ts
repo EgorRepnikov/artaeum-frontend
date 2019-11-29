@@ -19,9 +19,9 @@ export class ActivationComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const params = await this.route.queryParams.toPromise()
+    const { queryParams } = this.route.snapshot.queryParams
     try {
-      await this.accountService.activate(params['key']).toPromise()
+      await this.accountService.activate(queryParams['key']).toPromise()
       this.isError = false
     } catch {
       this.isError = true

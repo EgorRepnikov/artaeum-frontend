@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     private principal: Principal,
     private userService: UserService,
     private subscriptionService: SubscriptionService,
-    private activedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
       link: 'author',
       title: 'Dashboard'
     })
-    const params = await this.activedRoute.params.toPromise()
+    const { params } = this.route.snapshot
     try {
       const res = await this.userService.get(params['login']).toPromise()
       this.user = res.body

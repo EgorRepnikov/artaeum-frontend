@@ -22,17 +22,17 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private userService: UserService,
     private articleService: ArticleService,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
     private principal: Principal
   ) {}
 
   async ngOnInit() {
-    const { pagingParams: { page } } = await this.activatedRoute.data.toPromise()
+    const { page } = this.route.snapshot.data.pagingParams
     this.page = page
     this.previousPage = page
-    const params = await this.activatedRoute.parent.queryParams.toPromise()
-    this.query = params['query']
+    const { queryParams } = this.route.parent.snapshot
+    this.query = queryParams['query']
     this.currentUser = await this.principal.identity()
     await this.loadAll()
   }

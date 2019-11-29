@@ -21,16 +21,16 @@ export class WallComponent implements OnInit {
   constructor(
     private userService: UserService,
     private postService: PostService,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
     private principal: Principal
   ) {}
 
   async ngOnInit() {
-    const data = await this.activatedRoute.data.toPromise()
+    const { data } = this.route.snapshot
     this.page = data.pagingParams.page
     this.previousPage = data.pagingParams.page
-    const params = await this.activatedRoute.parent.params.toPromise()
+    const { params } = this.route.parent.snapshot
     const userRes = await this.userService.get(params['login']).toPromise()
     this.user = userRes.body
     this.currentUser = await this.principal.identity()

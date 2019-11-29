@@ -21,11 +21,11 @@ export class SubscribersComponent implements OnInit {
   constructor(
     private userService: UserService,
     private subscriptionService: SubscriptionService,
-    private activatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    const params = await this.activatedRoute.parent.params.toPromise()
+    const { params } = this.route.parent.snapshot
     const { body } = await this.subscriptionService
       .query({ profileId: params['login'] })
       .toPromise()

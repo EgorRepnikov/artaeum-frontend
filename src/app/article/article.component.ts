@@ -30,13 +30,13 @@ export class ArticleComponent implements OnInit {
     private articleService: ArticleService,
     private categoryService: CategoryService,
     private userService: UserService,
-    private activedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
     private sanitizer: DomSanitizer
   ) {}
 
   async ngOnInit() {
-    const params = await this.activedRoute.params.toPromise()
+    const { params } = this.route.snapshot
     try {
       const res = await this.articleService.get(params['id']).toPromise()
       this.articleBody = this.sanitizer.bypassSecurityTrustHtml(res.body.body)

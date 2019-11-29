@@ -26,12 +26,12 @@ export class AllArticlesComponent implements OnInit {
     private categoryService: CategoryService,
     private articleService: ArticleService,
     private principal: Principal,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   async ngOnInit() {
-    const { pagingParams: { page } } = await this.activatedRoute.data.toPromise()
+    const { page } = this.route.snapshot.data.pagingParams
     this.page = page
     this.previousPage = page
     this.currentUser = await this.principal.identity()
@@ -39,11 +39,13 @@ export class AllArticlesComponent implements OnInit {
   }
 
   async loadAll() {
-    const res = await this.articleService.query({
-      page: this.page - 1,
-      size: this.postsPerPage,
-      userId: this.currentUser.id
-    }).toPromise()
+    const res = await this.articleService
+      .query({
+        page: this.page - 1,
+        size: this.postsPerPage,
+        userId: this.currentUser.id
+      })
+      .toPromise()
     this.articles = res.body
     this.totalItems = res.headers.get('X-Total-Count')
     for (const a of res.body) {

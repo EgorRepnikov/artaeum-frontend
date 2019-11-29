@@ -23,8 +23,8 @@ export class PasswordResetFinishComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const params = await this.route.queryParams.toPromise()
-    this.key = params['key']
+    const { queryParams } = this.route.snapshot
+    this.key = queryParams['key']
     this.keyMissing = !this.key
   }
 

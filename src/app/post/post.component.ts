@@ -19,13 +19,13 @@ export class PostComponent implements OnInit {
     private principal: Principal,
     private postService: PostService,
     private userService: UserService,
-    private activedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   async ngOnInit() {
     this.currentUser = await this.principal.identity()
-    const params = await this.activedRoute.params
+    const { params } = this.route.snapshot
     try {
       const { body } = await this.postService.get(params['id']).toPromise()
       this.post = body

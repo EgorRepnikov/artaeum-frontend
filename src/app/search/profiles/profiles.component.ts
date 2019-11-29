@@ -20,16 +20,16 @@ export class ProfilesComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   async ngOnInit() {
-    const { pagingParams: { page } } = await this.activatedRoute.data.toPromise()
+    const { page } = await this.route.snapshot.data.pagingParams
     this.page = page
     this.previousPage = page
-    const params = await this.activatedRoute.parent.queryParams.toPromise()
-    this.query = params['query']
+    const { queryParams } = await this.route.parent.snapshot.queryParams
+    this.query = queryParams['query']
     await this.loadAll()
   }
 

@@ -24,11 +24,11 @@ export class BlogComponent implements OnInit {
     private userService: UserService,
     private categoryService: CategoryService,
     private principal: Principal,
-    private activatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    const params = await this.activatedRoute.parent.params.toPromise()
+    const { params } = this.route.parent.snapshot
     const res = await this.userService.get(params['login']).toPromise()
     this.user = res.body
     const categoriesRes = await this.categoryService.getAll(res.body.id).toPromise()

@@ -28,7 +28,8 @@ export function HttpLoaderFactory(handler: HttpBackend) {
       }
     }),
     LyThemeModule.setTheme('minima-light'),
-    SweetAlert2Module.forChild()
+    QuillModule.forRoot(),
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     TranslateStore,
