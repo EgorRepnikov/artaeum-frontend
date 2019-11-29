@@ -16,6 +16,7 @@ import { PostModule } from './post'
 import { ProfileModule } from './profile'
 import { SearchModule } from './search'
 import { SettingsModule } from './settings'
+import { TimelineModule } from './timeline'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SettingsModule } from './settings'
     PostModule,
     ProfileModule,
     SearchModule,
-    SettingsModule
+    SettingsModule,
+    TimelineModule
   ],
   bootstrap: [AppComponent]
 })
