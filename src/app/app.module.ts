@@ -15,6 +15,7 @@ import { NotFoundModule } from './not-found'
 import { PostModule } from './post'
 import { ProfileModule } from './profile'
 import { SearchModule } from './search'
+import { SettingsModule } from './settings'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchModule } from './search'
     NotFoundModule,
     PostModule,
     ProfileModule,
-    SearchModule
+    SearchModule,
+    SettingsModule
   ],
   bootstrap: [AppComponent]
 })
