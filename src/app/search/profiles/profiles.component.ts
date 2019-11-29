@@ -34,15 +34,15 @@ export class ProfilesComponent implements OnInit {
   }
 
   async loadAll() {
-    const res = await this.userService
+    const { body, headers } = await this.userService
       .search({
         page: this.page - 1,
         size: this.postsPerPage,
         query: this.query
       })
       .toPromise()
-    this.users = res.body
-    this.totalItems = res.headers.get('X-Total-Count')
+    this.users = body
+    this.totalItems = headers.get('X-Total-Count')
   }
 
   loadPage(page: number) {

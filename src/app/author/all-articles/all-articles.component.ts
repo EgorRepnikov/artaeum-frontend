@@ -31,9 +31,9 @@ export class AllArticlesComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const data = await this.activatedRoute.data.toPromise()
-    this.page = data.pagingParams.page
-    this.previousPage = data.pagingParams.page
+    const { pagingParams: { page } } = await this.activatedRoute.data.toPromise()
+    this.page = page
+    this.previousPage = page
     this.currentUser = await this.principal.identity()
     await this.loadAll()
   }

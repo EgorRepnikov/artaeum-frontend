@@ -34,12 +34,12 @@ import { TimelineModule } from './timeline'
     ArticleModule,
     AuthorModule,
     HomeModule,
-    NotFoundModule,
     PostModule,
     ProfileModule,
     SearchModule,
     SettingsModule,
-    TimelineModule
+    TimelineModule,
+    NotFoundModule
   ],
   bootstrap: [AppComponent]
 })

@@ -7,14 +7,14 @@ import {
   ArticleService, UserService,
   SmartButtonService, Principal,
   CategoryService, Category
-} from '../../core'
+} from '../core'
 
 @Component({
   selector: 'ae-single-article',
-  templateUrl: './single-article.component.html',
-  styleUrls: ['./single-article.component.css']
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.css']
 })
-export class SingleArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit {
 
   title = 'Artaeum'
 
@@ -52,15 +52,14 @@ export class SingleArticleComponent implements OnInit {
     }
   }
 
-  deleteArticle() {
-    this.articleService
-      .delete(this.article._id)
-      .subscribe(() => this.router.navigate(['/']))
+  async deleteArticle() {
+    await this.articleService.delete(this.article._id).toPromise()
+    this.router.navigate(['/'])
   }
 
   private async checkUserAndInitSmartButton() {
-    const user = this.currentUser = await this.principal.identity()
-    if (user && this.article.userId === user.id) {
+    this.currentUser = await this.principal.identity()
+    if (this.currentUser && this.article.userId === this.currentUser.id) {
       this.smartButtonService.add({
         className: 'fa fa-edit',
         link: `author/article/${this.article._id}`,

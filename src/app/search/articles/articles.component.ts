@@ -38,16 +38,16 @@ export class ArticlesComponent implements OnInit {
   }
 
   async loadAll() {
-    const res = await this.articleService
+    const { body, headers } = await this.articleService
       .search({
         page: this.page - 1,
         size: this.postsPerPage,
         query: this.query
       })
       .toPromise()
-    this.articles = res.body
-    this.totalItems = res.headers.get('X-Total-Count')
-    this.loadUsers()
+    this.articles = body
+    this.totalItems = headers.get('X-Total-Count')
+    await this.loadUsers()
   }
 
   loadPage(page: number) {

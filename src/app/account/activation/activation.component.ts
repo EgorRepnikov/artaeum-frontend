@@ -18,12 +18,13 @@ export class ActivationComponent implements OnInit {
     private accountService: AccountService
   ) {}
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.accountService.activate(params['key']).subscribe(
-        () => this.isError = false,
-        () => this.isError = true
-      )
-    })
+  async ngOnInit() {
+    const params = await this.route.queryParams.toPromise()
+    try {
+      await this.accountService.activate(params['key']).toPromise()
+      this.isError = false
+    } catch {
+      this.isError = true
+    }
   }
 }

@@ -40,13 +40,13 @@ export class LastArticlesComponent implements OnInit {
   }
 
   async loadArticles() {
-    const res = await this.articleService
+    const { body } = await this.articleService
       .queryByUsers({
         page: this.page++,
         size: env.POSTS_PER_PAGE,
         users: this.userIds
       })
       .toPromise()
-    this.articles = this.articles.concat(res.body)
+    this.articles = this.articles.concat(body)
   }
 }

@@ -29,13 +29,13 @@ export class AllPostsComponent implements OnInit {
   }
 
   async loadPosts() {
-    const res = await this.postService.query({
+    const { body, headers } = await this.postService.query({
       page: this.page++,
       size: env.POSTS_PER_PAGE
     }).toPromise()
-    this.posts = this.posts.concat(res.body)
-    this.totalItems = +res.headers.get('X-Total-Count')
-    this.loadUsers()
+    this.posts = this.posts.concat(body)
+    this.totalItems = +headers.get('X-Total-Count')
+    await this.loadUsers()
   }
 
   async deletePost(id: number) {
@@ -43,12 +43,12 @@ export class AllPostsComponent implements OnInit {
     this.posts = this.posts.filter(p => p.id !== id)
   }
 
-  private loadUsers() {
-    this.posts.forEach(async s => {
+  private async loadUsers() {
+    for (const s of this.posts) {
       if (!this.users[s.userId]) {
-        const res = await this.userService.get(s.userId).toPromise()
-        this.users[s.userId] = res.body
+        const { body } = await this.userService.get(s.userId).toPromise()
+        this.users[s.userId] = body
       }
-    })
+    }
   }
 }

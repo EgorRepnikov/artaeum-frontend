@@ -32,11 +32,9 @@ export class LoginComponent {
     private loginService: LoginService
   ) {}
 
-  onSubmit() {
-    const { username, password } = this.form.value
-    this.loginService
-      .login({ username, password })
-      .then(() => this.router.navigate(['/']))
-      .then(() => location.reload())
+  async onSubmit() {
+    await this.loginService.login(this.form.value)
+    await this.router.navigate(['/'])
+    location.reload()
   }
 }

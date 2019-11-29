@@ -33,10 +33,10 @@ export class SubscribersComponent implements OnInit {
     this.loadUsers(body)
   }
 
-  private loadUsers(subs: Subscription[]) {
-    subs.forEach(async s => {
+  private async loadUsers(subs: Subscription[]) {
+    for (const s of subs) {
       const { body } = await this.userService.get(s.subscriberId).toPromise()
       this.subscribers.push(body)
-    })
+    }
   }
 }

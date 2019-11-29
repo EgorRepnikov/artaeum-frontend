@@ -13,7 +13,7 @@ export class CreatePostComponent {
   @Output() updateWall = new EventEmitter<void>()
 
   form = new FormGroup({
-    'text': new FormControl(null, [
+    'text': new FormControl('', [
       Validators.required,
       Validators.minLength(1)
     ])

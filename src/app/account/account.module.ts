@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router'
 import { CoreModule } from '../core'
 import { SharedModule } from '../shared'
 import { routes } from './account.route'
-import { ActivationComponent } from './activation/activation.component'
-import { LoginComponent } from './login/login.component'
-import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component'
-import { PasswordResetInitComponent } from './password-reset/init/password-reset-init.component'
-import { RegisterComponent } from './register/register.component'
+import { ActivationComponent } from './activation'
+import { LoginComponent } from './login'
+import {
+  PasswordResetFinishComponent,
+  PasswordResetInitComponent
+} from './password-reset'
+import { RegisterComponent } from './register'
 
 @NgModule({
   imports: [

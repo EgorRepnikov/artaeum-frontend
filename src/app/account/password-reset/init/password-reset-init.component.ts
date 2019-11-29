@@ -16,12 +16,12 @@ export class PasswordResetInitComponent {
 
   constructor(private accountService: AccountService) {}
 
-  submit() {
-    this.accountService
-      .initReset(this.resetAccount.email)
-      .subscribe(
-        () => this.success = true,
-        () => this.error = true
-      )
+  async submit() {
+    try {
+      await this.accountService.initReset(this.resetAccount.email)
+      this.success = true
+    } catch {
+      this.error = true
+    }
   }
 }

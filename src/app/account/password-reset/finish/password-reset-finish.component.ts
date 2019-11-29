@@ -22,20 +22,21 @@ export class PasswordResetFinishComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.key = params['key']
-      this.keyMissing = !this.key
-    })
+  async ngOnInit() {
+    const params = await this.route.queryParams.toPromise()
+    this.key = params['key']
+    this.keyMissing = !this.key
   }
 
-  submit() {
-    this.accountService.save({
-      resetKey: this.key,
-      password: this.resetAccount.password
-    }).subscribe(
-      () => this.success = true,
-      () => this.error = true
-    )
+  async submit() {
+    try {
+      await this.accountService.save({
+        resetKey: this.key,
+        password: this.resetAccount.password
+      })
+      this.success = true
+    } catch {
+      this.error = true
+    }
   }
 }

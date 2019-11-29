@@ -27,22 +27,22 @@ export class LikeComponent implements OnInit {
     this.loadAll()
   }
 
-  like() {
+  async like() {
     if (this.currentUser) {
-      this.likeService
+      await this.likeService
         .saveOrRemove(this.resourceType, this.resourceId)
-        .subscribe(() => this.loadAll())
+        .toPromise()
+      await this.loadAll()
     }
   }
 
-  loadAll() {
-    this.likeService
+  async loadAll() {
+    const { body } = await this.likeService
       .getAllForResource(this.resourceType, this.resourceId)
-      .subscribe(res => {
-        this.likes = res.body
-        this.countOfLikes = Object.keys(res.body).length || 0
-        this.isLike = this.currentUser &&
-          !!this.likes.find(like => like.userId === this.currentUser.id)
-      })
+      .toPromise()
+    this.likes = body
+    this.countOfLikes = Object.keys(body).length || 0
+    this.isLike = this.currentUser &&
+      !!this.likes.find(l => l.userId === this.currentUser.id)
   }
 }

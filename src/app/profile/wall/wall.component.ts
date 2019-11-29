@@ -33,20 +33,20 @@ export class WallComponent implements OnInit {
     const params = await this.activatedRoute.parent.params.toPromise()
     const userRes = await this.userService.get(params['login']).toPromise()
     this.user = userRes.body
-    this.loadAll()
     this.currentUser = await this.principal.identity()
+    await this.loadAll()
   }
 
   async loadAll() {
-    const res = await this.postService
+    const { body, headers } = await this.postService
       .query({
         page: this.page - 1,
         size: this.postsPerPage,
         userId: this.user.id
       })
       .toPromise()
-    this.posts = res.body
-    this.totalItems = res.headers.get('X-Total-Count')
+    this.posts = body
+    this.totalItems = headers.get('X-Total-Count')
   }
 
   loadPage(page: number) {

@@ -15,29 +15,29 @@ export class RegisterComponent {
   title = 'Registration - Artaeum'
 
   form = new FormGroup({
-    'login': new FormControl(null, [
+    'login': new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(50),
       Validators.pattern('^[_\'.@A-Za-z0-9-]*$')
     ]),
-    'email': new FormControl(null, [
+    'email': new FormControl('', [
       Validators.required,
       Validators.email,
       Validators.minLength(5),
       Validators.maxLength(100)
     ]),
-    'firstName': new FormControl(null, [
+    'firstName': new FormControl('', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(50)
     ]),
-    'lastName': new FormControl(null, [
+    'lastName': new FormControl('', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(50)
     ]),
-    'password': new FormControl(null, [
+    'password': new FormControl('', [
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(50)
@@ -56,14 +56,13 @@ export class RegisterComponent {
     private accountService: AccountService
   ) {}
 
-  onSubmit() {
+  async onSubmit() {
     this.form.disable()
-    this.accountService.register(this.form.value).subscribe(res => {
-      if (res.status === 201) {
-        this.router.navigate(['/login'])
-      } else {
-        this.form.enable()
-      }
-    })
+    const res = await this.accountService.register(this.form.value).toPromise()
+    if (res.status === 201) {
+      this.router.navigate(['/login'])
+    } else {
+      this.form.enable()
+    }
   }
 }

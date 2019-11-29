@@ -14,7 +14,7 @@ export class CommentComponent implements OnInit {
   @Input() resourceId: string
 
   form = new FormGroup({
-    'text': new FormControl(null, [
+    'text': new FormControl('', [
       Validators.required,
       Validators.minLength(3)
     ])
@@ -39,33 +39,34 @@ export class CommentComponent implements OnInit {
     return this.users.find(u => u.id === id)
   }
 
-  createComment() {
+  async createComment() {
     const comment = {
       text: this.form.value.text,
       resourceType: this.resourceType,
       resourceId: this.resourceId
     }
     this.form.reset()
-    this.commentService.create(comment).subscribe(() => this.loadAll())
+    await this.commentService.create(comment).toPromise()
+    this.loadAll()
   }
 
-  deleteComment(id: number) {
-    this.commentService.delete(id).subscribe(() => this.loadAll())
+  async deleteComment(id: number) {
+    await this.commentService.delete(id).toPromise()
+    this.loadAll()
   }
 
-  private loadAll() {
-    this.commentService.query(this.resourceType, this.resourceId)
-      .subscribe(comments => {
-        this.comments = comments.body
-        this.loadUsers()
-      })
+  private async loadAll() {
+    const { body } = await this.commentService
+      .query(this.resourceType, this.resourceId)
+      .toPromise()
+    this.comments = body
+    this.loadUsers()
   }
 
-  private loadUsers() {
-    this.comments.map(comment => {
-      this.userService
-        .get(comment.userId)
-        .subscribe(res => this.users.push(res.body))
-    })
+  private async loadUsers() {
+    for (const c of this.comments) {
+      const { body } = await this.userService.get(c.userId).toPromise()
+      this.users.push(body)
+    }
   }
 }

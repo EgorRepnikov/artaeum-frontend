@@ -2,10 +2,10 @@ import { Routes } from '@angular/router'
 import { UserRouteAccessService, ResolvePagingParamsService } from '../core'
 
 import { AuthorComponent } from './author.component'
-import { AllArticlesComponent } from './all-articles/all-articles.component'
-import { CategoriesComponent } from './categories/categories.component'
-import { CreateUpdateArticleComponent } from './create-update-article/create-update-article.component'
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { AllArticlesComponent } from './all-articles'
+import { CategoriesComponent } from './categories'
+import { CreateUpdateArticleComponent } from './create-update-article'
+import { DashboardComponent } from './dashboard'
 
 export const routes: Routes = [{
   path: 'author',

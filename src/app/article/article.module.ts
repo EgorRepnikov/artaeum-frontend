@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router'
 import { CoreModule } from '../core'
 import { SharedModule } from '../shared'
 import { routes } from './article.route'
-import { SingleArticleComponent } from './single-article/single-article.component'
+import { ArticleComponent } from './article.component'
 
 @NgModule({
   imports: [
@@ -12,8 +12,6 @@ import { SingleArticleComponent } from './single-article/single-article.componen
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [
-    SingleArticleComponent
-  ]
+  declarations: [ArticleComponent]
 })
 export class ArticleModule {}

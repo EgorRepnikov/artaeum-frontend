@@ -7,6 +7,7 @@ import { I18nService } from './core'
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
+
   title = 'Artaeum'
 
   constructor(private i18nService: I18nService) {}

@@ -51,9 +51,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   private async loadAll() {
-    const categoriesRes = await this.categoryService
+    const { body } = await this.categoryService
       .getAll(this.currentUser.id)
       .toPromise()
-    this.categories = categoriesRes.body
+    this.categories = body
   }
 }

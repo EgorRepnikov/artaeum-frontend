@@ -17,11 +17,12 @@ export class ArticleComponent implements OnInit {
 
   constructor(private categoryService: CategoryService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.article.category) {
-      this.categoryService
+      const { body } = await this.categoryService
         .get(this.article.category)
-        .subscribe(res => this.category = res.body)
+        .toPromise()
+      this.category = body
     }
   }
 }

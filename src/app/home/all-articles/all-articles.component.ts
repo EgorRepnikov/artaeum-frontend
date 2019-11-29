@@ -29,20 +29,21 @@ export class AllArticlesComponent implements OnInit {
   }
 
   async loadArticles() {
-    const res = await this.articleService.query({
+    const { body, headers } = await this.articleService.query({
       page: this.page++,
       size: env.POSTS_PER_PAGE
     }).toPromise()
-    this.articles = this.articles.concat(res.body)
-    this.totalItems = +res.headers.get('X-Total-Count')
-    this.loadUsers()
+    this.articles = this.articles.concat(body)
+    this.totalItems = +headers.get('X-Total-Count')
+    await this.loadUsers()
   }
 
-  private loadUsers() {
-    this.articles.forEach(async a => {
+  private async loadUsers() {
+    for (const a of this.articles) {
       if (!this.users[a.userId]) {
-        this.users[a.userId] = await this.userService.get(a.userId).toPromise()
+        const { body } = await this.userService.get(a.userId).toPromise()
+        this.users[a.userId] = body
       }
-    })
+    }
   }
 }

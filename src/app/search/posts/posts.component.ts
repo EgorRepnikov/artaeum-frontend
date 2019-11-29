@@ -38,15 +38,15 @@ export class PostsComponent implements OnInit {
   }
 
   async loadAll() {
-    const res = await this.postService
+    const { body, headers } = await this.postService
       .search({
         page: this.page - 1,
         size: this.postsPerPage,
         query: this.query
       })
       .toPromise()
-    this.posts = res.body
-    this.totalItems = res.headers.get('X-Total-Count')
+    this.posts = body
+    this.totalItems = headers.get('X-Total-Count')
     this.loadUsers()
   }
 

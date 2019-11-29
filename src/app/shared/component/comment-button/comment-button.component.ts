@@ -16,9 +16,10 @@ export class CommentButtonComponent implements OnInit {
 
   constructor(private commentService: CommentService) {}
 
-  ngOnInit() {
-    this.commentService
+  async ngOnInit() {
+    const { body } = await this.commentService
       .query(this.resourceType, this.resourceId)
-      .subscribe(res => this.commentsCount = Object.keys(res.body).length || 0)
+      .toPromise()
+    this.commentsCount = Object.keys(body).length || 0
   }
 }

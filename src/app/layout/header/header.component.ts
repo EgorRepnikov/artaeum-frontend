@@ -33,8 +33,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: { query: this.searchQuery } })
   }
 
-  logout() {
+  async logout() {
     this.loginService.logout()
-    this.router.navigate(['/']).then(() => location.reload())
+    await this.router.navigate(['/'])
+    location.reload()
   }
 }

@@ -12,7 +12,7 @@ export class ChangePasswordComponent {
   title = 'Change password - Artaeum'
 
   form = new FormGroup({
-    'password': new FormControl(null, [
+    'password': new FormControl('', [
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(50)
