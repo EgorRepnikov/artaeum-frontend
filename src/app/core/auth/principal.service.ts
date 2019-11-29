@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { AccountService } from '../service'
+import { AccountService } from '../service/account.service'
 
 @Injectable({ providedIn: 'root' })
 export class Principal {

@@ -13,7 +13,7 @@ export class LoginService {
 
   login(credentials): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post('login', {
+      this.http.post<any>('login', {
         username: credentials.username,
         password: credentials.password,
         rememberMe: credentials.rememberMe

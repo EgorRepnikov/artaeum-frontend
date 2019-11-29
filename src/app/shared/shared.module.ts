@@ -25,6 +25,7 @@ import { DateConverterPipe, ImageAppenderPipe } from './pipe'
     ImageAppenderPipe
   ],
   exports: [
+    SharedLibsModule,
     CommentComponent,
     LikeComponent,
     CommentButtonComponent,

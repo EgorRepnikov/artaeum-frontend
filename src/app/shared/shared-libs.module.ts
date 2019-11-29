@@ -28,9 +28,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
       }
     }),
     LyThemeModule.setTheme('minima-light'),
-    SweetAlert2Module.forChild({
-      showCancelButton: true
-    })
+    SweetAlert2Module.forChild()
   ],
   providers: [
     TranslateStore,

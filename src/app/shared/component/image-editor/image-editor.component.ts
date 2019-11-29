@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core'
 import { ImgCropperConfig, ImgCropperEvent } from '@alyle/ui/resizing-cropping-images'
 import { LyTheme2 } from '@alyle/ui'
 
@@ -8,7 +8,7 @@ import { LyTheme2 } from '@alyle/ui'
   styleUrls: ['./image-editor.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ImageEditorComponent implements OnInit {
+export class ImageEditorComponent {
 
   @Input() width: number
   @Input() height: number
